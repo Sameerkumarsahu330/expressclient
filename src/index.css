@@ -1,0 +1,17 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+/* Your additional styles go here */
+.hide{
+	height: 0;
+}
+.show{
+	height: 11rem;
+}
+.hideCart{
+	visibility: hidden;
+	width:0 !important;
+}
+.showCart{
+	width: 100vw;
+}
