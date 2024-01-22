@@ -1,9 +1,9 @@
 import {useEffect,useState} from 'react';
 import ShowThreeProducts from './ShowThreeProducts';
 import axios from 'axios';
+import 'dotenv/config';
 
-const url = 'https://express-sameer.000webhostapp.com/EXPRESS/data.php';
-const testingUrl = 'http://localhost/expressbackend/api/getProducts.php';
+const url = process.env.DATAURL;  
 
 export default function FeaturedSection() {
   
