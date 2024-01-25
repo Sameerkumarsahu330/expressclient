@@ -26,21 +26,14 @@ export default function ProductPage() {
             </div>
             <div>
               <h2 className="font-bold my-3">Specifications:</h2>
-              <ul className="pl-10 list-disc">
-                <li>Fliks</li>
-                <li>Jiuskd</li>
-                <li>Esdlkki</li>
-                <li>Milsdki</li>
-              </ul>
+              <div className="p-3">
+                {p.ProductInfo}
+              </div>
             </div>
             <div className="mt-5">
               <button onClick={() => dispatch(addToCart({ProductID : productId, Quantity: 1,ProductPrice: p.ProductPrice}))} className="transition-all duration-500 w-[100%] text-lg bg-gray-800 text-white font-semibold py-2 active:scale-95 rounded">
                   Add to cart - ₹{p.ProductPrice}
               </button>
-            </div>
-            <div className="sm:hidden lg:block">
-              <h2 className="font-bold my-3">Product details:</h2>
-              <p>Thioshdofi sldufoifsdf lksoisdfs soidfoihs oisudfoijhsod oid soiuoioisd oisudoifu osidu oisudsdfoiu iu iusdf.</p>
             </div>
           </div>
         </div>
