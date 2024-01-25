@@ -126,6 +126,8 @@ function SearchBar() {
       
       if(productName.includes(searchInput.toLowerCase()) || searchInput.includes(productCategory) || productInfo.includes(searchInput.toLowerCase())){
         return p;
+      }else{
+        return false;
       }
     }).map(p => 
       <li key={p.ProductID} className="py-1 px-5 hover:bg-blue-50">
