@@ -13,6 +13,7 @@ import LoginPage from './Pages/LoginPage';
 import ShopPage from './Pages/ShopPage';
 import CategoryPage from './Pages/CategoryPage';
 import ProductPage from './Pages/ProductPage';
+import SearchResultsPage from './Pages/SearchResultsPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -23,6 +24,7 @@ root.render(
         <Route path="/shop" element={<ShopPage/>}/>
         <Route path="/categoryPage/:categoryName" element={<CategoryPage/>}/>
         <Route path="/productPage/:productId" element={<ProductPage/>}/>
+        <Route path="/searchResultsPage/:searchedProducts" element={<SearchResultsPage/>}/>
         <Route path="/faq" element={<FAQPage/>}/>
         <Route path="/support" element={<SupportPage/>}/>
         <Route path="/about" element={<AboutPage/>}/>
