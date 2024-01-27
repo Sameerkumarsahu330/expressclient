@@ -2,7 +2,7 @@ import {useState} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
-const url = "http://localhost/expressbackend/api/signup.php";
+const url = "https://express-sameer.000webhostapp.com/EXPRESS/signup.php";
 
 export default function RegistrationPage(){
     const [name,setName] = useState('');
