@@ -14,6 +14,7 @@ import ShopPage from './Pages/ShopPage';
 import CategoryPage from './Pages/CategoryPage';
 import ProductPage from './Pages/ProductPage';
 import SearchResultsPage from './Pages/SearchResultsPage';
+import SignUpPage from './Pages/SignUpPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -29,6 +30,7 @@ root.render(
         <Route path="/support" element={<SupportPage/>}/>
         <Route path="/about" element={<AboutPage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/signup" element={<SignUpPage/>}/>
       </Routes>
     </BrowserRouter>
   </Provider>
