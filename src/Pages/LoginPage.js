@@ -5,7 +5,7 @@ import axios from "axios";
 import {useDispatch} from 'react-redux';
 import { updateSession } from "../Assets/Store/sessionSlice";
 
-const url = 'http://localhost/expressbackend/api/login.php';
+const url = 'https://express-sameer.000webhostapp.com/EXPRESS/api/login.php';
 
 export default function LoginPage() {
     const [userName,setUserName] = useState('');

@@ -2,8 +2,8 @@ import {useEffect,useState} from 'react';
 import ShowThreeProducts from './ShowThreeProducts';
 import axios from 'axios';
 
-const url = 'http://localhost/expressbackend/api/getProducts.php';
-const url2 = 'http://localhost/expressbackend/api/validate.php';
+const url = 'https://express-sameer.000webhostapp.com/EXPRESS/api/getProducts.php';
+const url2 = 'https://express-sameer.000webhostapp.com/EXPRESS/api/validate.php';
 
 export default function FeaturedSection() {
   
