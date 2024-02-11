@@ -7,7 +7,7 @@ import Footer from '../Components/Footer';
 export default function HomePage() {
   return (
     <>
-      <Header options={['FAQ','Support','About','Login']}/>
+      <Header/>
       <LandingPage/>
       <FeaturedSection/>
       <Footer/>

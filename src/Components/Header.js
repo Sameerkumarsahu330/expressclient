@@ -2,29 +2,49 @@ import {Link} from 'react-router-dom';
 import { useState } from 'react';
 import {MenuBtn,CartBtn} from './Icons.js';
 import ScrollToTop from './ScrollToTop';
+import SearchBar from './SearchBar.js';
 import GoBack from './GoBack';
 import GetLocation from './GetLocation';
 import { useSelector,useDispatch } from "react-redux";
 import {updateQuantity} from '../Assets/Store/cartSlice';
+import {updateSession} from '../Assets/Store/sessionSlice.js';
 
 const imageFolderPath = 'https://express-sameer.000webhostapp.com/EXPRESS/';
 
-export default function Header({options}) {
+export default function Header() {
   const Products = useSelector(state => state.data.productData);
   const [expand, setExpand] = useState(false);
   const [expandCart, setExpandCart] = useState(false);
   const cart = useSelector(state => state.cart.cartData);
   const dispatch = useDispatch();
+  const session = useSelector(state => state.session.isSessionActive);
 
   let cartTotal = 0;
   if(cart.length > 0){
     cart.forEach(item => cartTotal += item.Quantity*item.ProductPrice);
   }
 
-  const menuOptions = options.map((option,index) =>
-    <li key={index} className=' transition-all duration-500 text-gray-600 hover:text-white px-5 hover:px-8 hover:bg-gray-600 text-xl font-bold uppercase cursor-pointer tracking-[0.2rem] leading-8'>
-      <Link to={`/${option.toLowerCase()}`}>{option}</Link>
-    </li>);
+  const handleLogout = async () => {
+    dispatch(updateSession(false));
+  }
+
+  const options = ['FAQ','Support','About',`${session ? 'logout' : 'login'}`];
+
+  const menuOptions = options.map((option,index) => {
+    if(option === 'logout'){
+      return(
+        <li key={index} onClick={handleLogout} className=' transition-all duration-500 text-gray-600 hover:text-white px-5 hover:px-8 hover:bg-gray-600 text-xl font-bold uppercase cursor-pointer tracking-[0.2rem] leading-8'>
+          <Link to={`/`}>Logout</Link>
+        </li>
+      );
+    }else{
+      return(
+        <li key={index} className=' transition-all duration-500 text-gray-600 hover:text-white px-5 hover:px-8 hover:bg-gray-600 text-xl font-bold uppercase cursor-pointer tracking-[0.2rem] leading-8'>
+          <Link to={`/${option.toLowerCase()}`}>{option}</Link>
+        </li>
+      )
+    }
+  });
 
   function getCartItems(p){
     const product = Products.find(item => parseInt(item.ProductID) === parseInt(p.ProductID));
@@ -58,7 +78,7 @@ export default function Header({options}) {
       <header id="header" className='relative z-50 border shadow-2xl'>
         <div className='flex justify-between items-center bg-transparent px-2 py-3'>
           <div className='flex gap-2 items-center'>
-            <GoBack cName={`${GetLocation() === '/'? 'hidden':'block'}`}/>
+            <GoBack cName={`${GetLocation() === '/' || GetLocation() === '/logout'? 'hidden':'block'}`}/>
             <Link to="/">
               <p onClick={ScrollToTop} className='text-3xl text-gray-600 font-bold'>E X P R E S S</p>
             </Link>
@@ -111,65 +131,4 @@ export default function Header({options}) {
       </section>
     </>
   )
-}
-
-function SearchBar() {
-  const Products = useSelector(state => state.data.productData);
-  let searchedProducts = [],searchResults = [];
-  const [searchInput,setSearchInput] = useState('');
-  
-  if(searchInput && searchInput.length > 2) {
-    searchedProducts = Products.filter(p => {
-      const productName = p.ProductName.toLowerCase();
-      const productInfo = p.ProductInfo.toLowerCase();
-      const productCategory = p.ProductCategory;
-      
-      if(productName.includes(searchInput.toLowerCase()) || searchInput.includes(productCategory) || productInfo.includes(searchInput.toLowerCase())){
-        return p;
-      }else{
-        return false;
-      }
-    });
-    searchResults = searchedProducts.map(p => 
-      <li key={p.ProductID} className="py-1 px-5 hover:bg-blue-50">
-        <Link to={`/productPage/${p.ProductID}`}>
-          <div className='flex justify-start items-center'>
-            <img src={imageFolderPath+p.ProductImage} alt="product_image" className="w-16 h-16 mr-5"/>
-            <div className="text-gray-600 mb-2">
-              <p>{p.ProductName}</p>
-            </div>
-          </div>
-        </Link>
-      </li>
-    );
-  }
-  
-  return (
-  <div className="w-[90vw] mx-auto sm:mx-0 sm:w-[30vw] xl:w-96">
-    <div className="relative flex w-full flex-wrap items-stretch rounded border border-solid border-neutral-300">
-      <input
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-          type="search"
-          className="relative m-0 block flex-auto bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-gray-800 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-gray-800 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-gray-400 dark:placeholder:text-neutral-200 dark:focus:border-primary"
-          placeholder="Search"
-          aria-label="Search"
-          aria-describedby="button-addon2" />
-
-      {/* <!--Search icon--> */}
-      <button onClick={() => setSearchInput('')} className="input-group-text flex items-center whitespace-nowrap rounded px-3 py-1.5 text-center text-base font-normal text-gray-800 cursor-pointer" id="basic-addon2">
-          <Link to={`/searchResultsPage/${searchedProducts.length > 0 ? searchedProducts.map(p=> p.ProductID) : [0]}`}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
-                <path fillRule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clipRule="evenodd" />
-            </svg>
-          </Link>
-      </button>
-    </div>
-    <div className={`absolute top-40 sm:top-20 bg-white text-sm tracking-widest p-2 w-[inherit] rounded border border-solid border-neutral-300 ${searchResults.length > 0? '':'hidden'}`}>
-      <ul className='w-[100%] max-h-[23rem] overflow-hidden'>
-        {searchResults}
-      </ul>
-    </div>
-  </div>
-  );
 }

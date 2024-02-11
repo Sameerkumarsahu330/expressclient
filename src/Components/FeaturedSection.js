@@ -2,7 +2,8 @@ import {useEffect,useState} from 'react';
 import ShowThreeProducts from './ShowThreeProducts';
 import axios from 'axios';
 
-const url = 'https://express-sameer.000webhostapp.com/EXPRESS/data.php';
+const url = 'http://localhost/expressbackend/api/getProducts.php';
+const url2 = 'http://localhost/expressbackend/api/validate.php';
 
 export default function FeaturedSection() {
   
@@ -19,7 +20,13 @@ export default function FeaturedSection() {
             }
         };
 
+        const checkLogin = async () => {
+          const response = await axios.post(url2);
+          console.log(response.data);
+        }
+
         fetchData();
+        checkLogin();
 
     }, []);
     

@@ -15,7 +15,7 @@ export default function CategoryPage(){
     
     return(
         <>
-            <Header options={['FAQ','Support','About','Login']}/>
+            <Header/>
             <h1 className='mx-auto w-[85%] mt-5 text-[6vw] text-gray-600 font-bold uppercase text-center tracking-widest'>
                 {categoryName}
             </h1>

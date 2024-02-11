@@ -2,7 +2,7 @@ import {useState} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
-const url = "https://express-sameer.000webhostapp.com/EXPRESS/signup.php";
+const url = "http://localhost/expressbackend/api/signup.php";
 
 export default function RegistrationPage(){
     const [name,setName] = useState('');
@@ -112,7 +112,7 @@ export default function RegistrationPage(){
                 </div>
                 <div className='w-3/4 mx-auto flex justify-center'>
                     <h2>Already have an account?</h2>
-                    <p className='underline text-blue-500'>
+                    <p className='text-green-800 font-semibold ml-1'>
                         <Link to='/login'>Login</Link>
                     </p>
                 </div>
@@ -135,3 +135,5 @@ function Input({value,setter,type,namePlaceholder}){
         <input value={value} onChange={setter} className='w-[100%] mb-2 p-2 border-2' type={type} name={namePlaceholder} placeholder={namePlaceholder} required/>
     )
 }
+
+export {Input,Radio};

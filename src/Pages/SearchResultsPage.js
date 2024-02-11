@@ -33,7 +33,7 @@ export default function SearchResultsPage(){
     
     return (
         <>
-            <Header options={['FAQ','Support','About','Login']}/>
+            <Header/>
             <div className='py-10'>
                 {parseInt(searchedProducts[0]) !== 0 ? (<ul className='mx-auto w-[30rem] sm:w-[60vw]'>
                     {showSearchedProducts}

@@ -18,7 +18,7 @@ export default function ShopPage(){
     
     return(
         <>
-            <Header options={['FAQ','Support','About','Login']}/>
+            <Header/>
             <h1 className='mx-auto w-[85%] text-[8vw] text-gray-600 font-bold uppercase text-center tracking-widest'>Shop</h1>
             <div className=''><ShowFilters categories={categories} Products={Products}/></div>
             <Footer/>

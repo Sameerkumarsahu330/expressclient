@@ -14,7 +14,7 @@ export default function ProductPage() {
 
   return (
     <>
-      <Header options={['FAQ','Support','About','Login']}/>
+      <Header/>
         <div className="sm:flex sm:flex-row sm:gap-5 sm:w-[70%] sm:justify-center sm:mt-10 sm:mx-auto sm:rounded">
           <div className="sm:w-[60%]  border-2 rounded flex justify-center items-center">
             <img src={imageFolderPath+p.ProductImage} alt="product_Image" className="w-[98vw] sm:w-[80%] mx-auto sm:m-0 sm:p-5"/>
